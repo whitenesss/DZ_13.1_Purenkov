@@ -1,23 +1,29 @@
-class Category:
-    name = str
-    abuse = str
-    goods = str
-    def __init__(self,name,abuse,goods):
-        self.name = name
-        self.abuse = abuse
-        self.goods = goods
+from pprint import pprint
+
+from develop.class_product import Category, Product
+from develop.import_json import file_json
 
 
+def main():
+    producti_json = file_json()
+    list_category = []
+    list_product = []
+    for categories in producti_json:
+        product_catalog = [proh for proh in categories["products"]]
+        category = Category(categories['name'], categories['description'], categories['products'])
+        list_category.append(category.get_name())
+        list_category.append(category.get_description())
+        list_category.append(category.get_products())
+        for categories_1 in product_catalog:
+            product = Product(categories_1['name'], categories_1['description'], categories_1['price'],
+                              categories_1['quantity'])
+            list_product.append(product.get_name())
+            list_product.append(product.get_description())
+            list_product.append(product.get_price())
+            list_product.append(product.get_quantity())
+    print(*list_category, sep='\n')
+    print()
+    print(*list_product, sep='\n')
 
-
-class Product:
-    name = str
-    abuse = str
-    value = float
-    quantity_in_stock = int
-    def __init__(self, name, abuse, value, quantity_in_stock):
-        self.name = name
-        self.abuse = abuse
-        self.value = value
-        self.quantity_in_stock = quantity_in_stock
-
+if __name__ == '__main__':
+    main()
