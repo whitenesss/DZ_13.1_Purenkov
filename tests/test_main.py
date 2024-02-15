@@ -15,14 +15,14 @@ def test_product():
 
 
 def test_init_category(test_catgory):
-    assert test_catgory.get_name() == 'name'
-    assert test_catgory.get_description() == 'description'
-    assert test_catgory.get_products() == 'products'
+    assert test_catgory.request_name() == 'name'
+    assert test_catgory.request_description() == 'description'
+    assert test_catgory.request_products() == 'products'
 
 
 
 def test_init_product(test_product):
-    assert test_product.get_name() == 'name'
-    assert test_product.get_description() == 'description'
-    assert test_product.get_price() == 'price'
-    assert test_product.get_quantity() == 'quantity'
+    assert test_product.request_name() == 'name'
+    assert test_product.request_description() == 'description'
+    assert test_product.request_price() == 'price'
+    assert test_product.request_quantity() == 'quantity'

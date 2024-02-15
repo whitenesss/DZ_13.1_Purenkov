@@ -2,10 +2,10 @@ class Category:
     """Класс категории"""
     name: str
     description: str
-    products: str
+    products: []
 
     total_numbers_of_category = 0
-    unique_goods = 0
+    unique_products = 0
 
     def __init__(self, name, description, products):
         self.name = name
@@ -13,15 +13,15 @@ class Category:
         self.products = products
 
         Category.total_numbers_of_category += 1
-        Category.unique_goods += 1
+        Category.unique_products += len(products)
 
-    def get_name(self):
+    def request_name(self):
         return self.name
 
-    def get_description(self):
+    def request_description(self):
         return self.description
 
-    def get_products(self):
+    def request_products(self):
         return self.products
 
 
@@ -38,14 +38,14 @@ class Product:
         self.price = price
         self.quantity = quantity
 
-    def get_name(self):
+    def request_name(self):
         return self.name
 
-    def get_description(self):
+    def request_description(self):
         return self.description
 
-    def get_price(self):
+    def request_price(self):
         return self.price
 
-    def get_quantity(self):
+    def request_quantity(self):
         return self.quantity
