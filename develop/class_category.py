@@ -1,38 +1,35 @@
 class Category:
-    """Класс категории"""
-    name: str
-    description: str
-    products: list
-    total_numbers_of_category = 0
-    unique_products = 0
+    '''
+    Класс категорий товаров
+    '''
+    category_count = 0
+    unique_products = 1
 
     def __init__(self, name, description, products):
         self.name = name
         self.description = description
-        self.__products = products
-        # if products not in Category.products:
-        #      Category.products.append(products)
-        Category.total_numbers_of_category += 1
-        Category.unique_products += len(products)
-
-    def request_name(self):
-        return self.name
-
-    def request_description(self):
-        return self.description
-
-    def request_products(self):
-        '''задание 1 приватный атрибут roduct'''
-        return self.__products
+        self.__products = [products]
+        Category.category_count += 1
+        if products not in products:
+            Category.unique_products += 1
 
     @property
-    def request_description_1(self):
-        '''
-        задание 2  выводить список товаров в формате:
-        Продукт, 80 руб. Остаток: 15 шт.
-        '''
-        return f'{self.__products[0]}, {self.__products[2]} руб. Остаток: {self.__products[3]} шт.'
+    def products_1(self):
+        return self.__products
+    @property
+    def products(self):
+        '''вывод всего списка подученного товара'''
+        # print(self.__products)
+        count_prod = 0
+        for i in self.__products:
+            count_prod += 1
+            if len(self.__products) != count_prod:
+                print(f'{i[0]}, {i[2]} руб. Остаток: {i[3]} шт.')
+                continue
+            return f'{i[0]}, {i[2]} руб. Остаток: {i[3]} шт.'
 
-    @request_description_1.setter
-    def request_description_1(self, product):
-        self.__products = product
+    @products.setter
+    def products(self, product):
+        '''полученный товар добовляем в список перед этим проверяем чтобы небыло повторений'''
+        if product not in self.__products:
+            self.__products.append(product)
