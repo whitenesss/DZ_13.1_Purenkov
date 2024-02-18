@@ -18,7 +18,7 @@ class Category:
         return self.__products
     @property
     def products(self):
-        '''вывод всего списка подученного товара'''
+        '''вывод всего списка полученного товара'''
         # print(self.__products)
         count_prod = 0
         for i in self.__products:
