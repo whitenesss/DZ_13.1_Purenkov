@@ -7,12 +7,12 @@ class Product:
     def __init__(self, name, description, price, quantity):
         self.name = name
         self.description = description
-        self._price = price
+        self.__price = price
         self.quantity = quantity
 
     @property
     def request_price(self):
-        return self._price
+        return self.__price
 
     @request_price.setter
     def request_price(self, price):
@@ -21,21 +21,21 @@ class Product:
         '''
         if price <= 0:
             print("Цена введена не корректно")
-        elif price < self._price:
+        elif price < self.__price:
             while True:
                 answer = input("Новая цена ниже чем старая, вы уверены что хотите изменить цену (y/n): ").lower()
                 if answer == "y":
-                    self._price = price
+                    self.__price = price
                     break
                 elif answer == "n":
-                    self._price = self._price
+                    self.__price = self.__price
                     break
         else:
-            self._price = price
+            self.__price = price
 
     @request_price.deleter
     def request_price(self):
-        self._price = None
+        self.__price = None
 
     @property
     def request_quantity(self):
