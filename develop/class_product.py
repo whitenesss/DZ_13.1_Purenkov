@@ -1,5 +1,4 @@
 class Product:
-    """Классы продукт"""
     name: str
     description: str
     price: float
@@ -10,14 +9,6 @@ class Product:
         self.description = description
         self._price = price
         self.quantity = quantity
-
-    @property
-    def request_name(self):
-        return self.name
-
-    @property
-    def request_description(self):
-        return self.description
 
     @property
     def request_price(self):
@@ -42,13 +33,29 @@ class Product:
         else:
             self._price = price
 
+    @request_price.deleter
+    def request_price(self):
+        self._price = None
+
     @property
     def request_quantity(self):
         return self.quantity
 
-    @property
-    def all_request(self):
-        '''Задание 3. возврощяет отбект который добовляем в список'''
-        return [self.name, self.description, self.request_price, self.quantity]
-
-
+    @classmethod
+    def new_product(cls, product):
+        '''
+        Задание 3. создается товар из dict который добовляем в список
+        '''
+        product_list_in_categ = []
+        if type(product) == dict:
+            cls.name = product['name']
+            cls.description = product['description']
+            cls._price = product['price']
+            cls.quantity = product['quantity']
+            if cls.name == Product.name:
+                cls.quantity += Product.quantity
+                product_list_in_categ.append(cls.name)
+                product_list_in_categ.append(cls.description)
+                product_list_in_categ.append(cls._price)
+                product_list_in_categ.append(cls.quantity)
+        return product_list_in_categ
