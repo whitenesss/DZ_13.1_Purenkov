@@ -1,8 +1,4 @@
 class Product:
-    name: str
-    description: str
-    price: float
-    quantity: int
 
     def __init__(self, name, description, price, quantity):
         self.name = name
@@ -42,20 +38,34 @@ class Product:
         return self.quantity
 
     @classmethod
-    def new_product(cls, product):
+    def new_product(cls, product_data: dict):
         '''
         Задание 3. создается товар из dict который добовляем в список
         '''
-        product_list_in_categ = []
-        if type(product) == dict:
-            cls.name = product['name']
-            cls.description = product['description']
-            cls._price = product['price']
-            cls.quantity = product['quantity']
-            if cls.name == Product.name:
-                cls.quantity += Product.quantity
-                product_list_in_categ.append(cls.name)
-                product_list_in_categ.append(cls.description)
-                product_list_in_categ.append(cls._price)
-                product_list_in_categ.append(cls.quantity)
-        return product_list_in_categ
+        # print(product_data)
+
+        return cls(**product_data)
+
+    def __str__(self):
+        '''Задание 1: строковое отображение ввиде ниже представленном'''
+        return f'{self.name}, {self.__price} руб. Остаток: {self.quantity} шт'
+
+    def __add__(self, other):
+        '''
+        Задание 2
+        '''
+        return self.quantity * self.__price + other.quantity * other.__price
+
+        # product_list_in_categ = []
+        # if type(product) == dict:
+        #     cls.name = product['name']
+        #     cls.description = product['description']
+        #     cls._price = product['price']
+        #     cls.quantity = product['quantity']
+        #     if cls.name == Product.name:
+        #         cls.quantity += Product.quantity
+        #         product_list_in_categ.append(cls.name)
+        #         product_list_in_categ.append(cls.description)
+        #         product_list_in_categ.append(cls._price)
+        #         product_list_in_categ.append(cls.quantity)
+        # return product_list_in_categ

@@ -10,15 +10,11 @@ def main():
         for b in a['products']:
             asd.append(b)
 
-    asddd = Product.new_product(
-        {
-            "name": "Iphone 15",
-            "description": "512GB, Gray space",
-            "price": 210000.0,
-            "quantity": 8
-        })
 
-    category = Category("Смартфоны", 'как средство', asddd)
+
+    asddd = Product.new_product(asd[1])
+    print(asddd)
+    category = Category("Смартфоны", 'как средство', [asddd])
     rtyui = Product.new_product(asd[0])
     category.products = rtyui
     rtyui = Product.new_product(asd[1])
@@ -28,9 +24,23 @@ def main():
     rtyui = Product.new_product(asd[3])
     category.products = rtyui
     rtyui = Product.new_product(asd[3])
-    category.products = rtyui
+    product = Product(asd[1]['name'], asd[1]['description'], asd[1]['price'], asd[1]['quantity'])
 
+    product1 = Product(asd[2]['name'], asd[2]['description'], asd[2]['price'], asd[2]['quantity'])
+
+    print(product + product1)
+    print(asd[1],asd[2])
+    print(asd[3])
+    print(rtyui)
+    category.products = rtyui
+    category.products = rtyui
     print(category.products)
+    print(asd[2])
+    rtyui = Product.new_product(asd[2])
+    print(rtyui)
+    category.products = rtyui
+    print(len(category))
+    print(category, len(category))
 
 
 if __name__ == '__main__':
