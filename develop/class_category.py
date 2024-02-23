@@ -21,14 +21,7 @@ class Category:
             print(product)
             result += f'{product.name}, {product.request_price} руб. Остаток: {product.quantity} шт.\n'
         return result
-        # print(self.__products)
-        # count_prod = 0
-        # for i in self.__products:
-        #     count_prod += 1
-        #     if len(self.__products) != count_prod:
-        #         print(f'{i[0]}, {i[2]} руб. Остаток: {i[3]} шт.')
-        #         continue
-        #     return f'{i[0]}, {i[2]} руб. Остаток: {i[3]} шт.'
+
 
     @products.setter
     def products(self, product):
