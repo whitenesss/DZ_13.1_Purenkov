@@ -42,7 +42,6 @@ class Product:
         '''
         Задание 3. создается товар из dict который добовляем в список
         '''
-        # print(product_data)
 
         return cls(**product_data)
 
@@ -55,17 +54,3 @@ class Product:
         Задание 2
         '''
         return self.quantity * self.__price + other.quantity * other.__price
-
-        # product_list_in_categ = []
-        # if type(product) == dict:
-        #     cls.name = product['name']
-        #     cls.description = product['description']
-        #     cls._price = product['price']
-        #     cls.quantity = product['quantity']
-        #     if cls.name == Product.name:
-        #         cls.quantity += Product.quantity
-        #         product_list_in_categ.append(cls.name)
-        #         product_list_in_categ.append(cls.description)
-        #         product_list_in_categ.append(cls._price)
-        #         product_list_in_categ.append(cls.quantity)
-        # return product_list_in_categ
