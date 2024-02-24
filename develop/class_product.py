@@ -53,4 +53,4 @@ class Product:
         '''
         Задание 2
         '''
-        return self.quantity * self.__price + other.quantity * other.__price
+        return self.quantity * self.request_price + other.quantity * other.request_price

@@ -36,7 +36,7 @@ class Category:
         if product not in self.__products:
             self.__products.append(product)
 
-    def __len__(self):
+    def __len__(self) -> object:
 
         return len(self.__products)
 
@@ -44,4 +44,4 @@ class Category:
         ''' добавить строковое отображение в следующем виде:
                 Смартфоны, количество продуктов: 3
         '''
-        return f'{self.name}, количество продуктов:'
+        return f'{self.name}, количество продуктов: {Category.__len__(self)}'

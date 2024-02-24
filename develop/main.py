@@ -40,7 +40,7 @@ def main():
     print(rtyui)
     category.products = rtyui
     print(len(category))
-    print(category, len(category))
+    print(category)
 
 
 if __name__ == '__main__':
