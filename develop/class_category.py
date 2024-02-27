@@ -1,3 +1,4 @@
+from develop.class_product import Product
 class Category:
     '''
     Класс категорий товаров
@@ -10,7 +11,7 @@ class Category:
         self.description = description
         self.__products = products
         Category.category_count += 1
-        if products not in products:
+        if products not in self.__products:
             Category.unique_products += 1
 
     @property
@@ -26,9 +27,12 @@ class Category:
     @products.setter
     def products(self, product):
         '''полученный товар добовляем в список перед этим проверяем чтобы небыло повторений'''
-        if product not in self.__products:
-            self.__products.append(product)
+        if isinstance(product, Product):# проверяем что приходит точно из класса продукт
+            if product not in self.__products:
+                self.__products.append(product)
 
+    def get_product(self):
+        return self.__products
     def __len__(self) -> object:
 
         return len(self.__products)
