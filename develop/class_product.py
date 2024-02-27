@@ -1,10 +1,13 @@
 class Product:
 
-    def __init__(self, name, description, price, quantity):
+    color: str
+
+    def __init__(self, name, description, price, quantity, color):
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
+        self.color = color
 
     @property
     def request_price(self):
@@ -33,17 +36,14 @@ class Product:
     def request_price(self):
         self.__price = None
 
-    @property
-    def request_quantity(self):
-        return self.quantity
-
     @classmethod
     def new_product(cls, product_data: dict):
         '''
         Задание 3. создается товар из dict который добовляем в список
         '''
-
-        return cls(**product_data)
+        valid_keys = {'name', 'description', 'price', 'quantity', 'color'}
+        filtered_data = {key: product_data[key] for key in valid_keys if key in product_data}
+        return cls(**filtered_data)
 
     def __str__(self):
         '''Задание 1: строковое отображение ввиде ниже представленном'''
@@ -54,3 +54,8 @@ class Product:
         Задание 2
         '''
         return self.quantity * self.request_price + other.quantity * other.request_price
+
+
+#
+# if __name__=='__main__':
+#     pass
