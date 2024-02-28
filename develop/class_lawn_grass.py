@@ -8,6 +8,7 @@ class Lawn_grass(Product):
         self.germination_period = germination_period
 
     def __add__(self, other):
-        if type(other) == Lawn_grass:
-            return self.quantity * self.request_price + other.quantity * other.request_price
+        if isinstance(other, Lawn_grass):
+            if type(other) == Lawn_grass:
+                return self.quantity * self.request_price + other.quantity * other.request_price
         return TypeError
