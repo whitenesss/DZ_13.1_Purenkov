@@ -9,7 +9,6 @@ class Smartphone(Product):
         self.memory = memory
 
     def __add__(self, other):
-        if isinstance(other, Smartphone):
-            if type(other) == Smartphone:
-                return self.quantity * self.request_price + other.quantity * other.request_price
+        if type(other) == Smartphone:
+            return self.quantity * self.request_price + other.quantity * other.request_price
         return TypeError
