@@ -53,8 +53,9 @@ class Product:
         '''
         Задание 2
         '''
-        return self.quantity * self.request_price + other.quantity * other.request_price
-
+        if isinstance(other, Product):
+            return self.quantity * self.request_price + other.quantity * other.request_price
+        return TypeError
 
 #
 # if __name__=='__main__':
