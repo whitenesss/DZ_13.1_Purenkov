@@ -1,6 +1,10 @@
-class Product:
+from develop.class_abstract_product_category_order import AbstractProduct
+from develop.class_mixin import ObjectCreationMixin
 
+
+class Product(AbstractProduct, ObjectCreationMixin):
     color: str
+    suppress_creation_info = False
 
     def __init__(self, name, description, price, quantity, color):
         self.name = name
@@ -8,6 +12,8 @@ class Product:
         self.__price = price
         self.quantity = quantity
         self.color = color
+        if not self.suppress_creation_info:
+            print((repr(self)))
 
     @property
     def request_price(self):
@@ -57,6 +63,6 @@ class Product:
             return self.quantity * self.request_price + other.quantity * other.request_price
         return TypeError
 
-#
-# if __name__=='__main__':
-#     pass
+
+if __name__ == '__main__':
+    product = Product("55\" QLED 4K", "Фоновая подсветка", 10000.0, 1, 'grin')
