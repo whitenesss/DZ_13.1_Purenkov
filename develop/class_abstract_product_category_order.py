@@ -10,6 +10,10 @@ class AbstractProduct(ABC):
     def __str__(self):
         pass
 
+    @abstractmethod
+    def new_product(self):
+        pass
+
 
 class AbstractCategoryOrder(ABC):
 

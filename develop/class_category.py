@@ -1,11 +1,13 @@
 from develop.class_product import Product
 from develop.class_abstract_product_category_order import AbstractCategoryOrder
+from develop.class_mixin import ObjectCreationMixin
 
 
-class Category(AbstractCategoryOrder):
+class Category(AbstractCategoryOrder, ObjectCreationMixin):
     '''
     Класс категорий товаров
     '''
+    suppress_creation_info = False
     category_count = 0
     unique_products = 0
 
@@ -16,6 +18,8 @@ class Category(AbstractCategoryOrder):
         Category.category_count += 1
         if products not in self.__products:
             Category.unique_products += 1
+        if not self.suppress_creation_info:
+            print((repr(self)))
 
     @property
     def products(self):
@@ -29,7 +33,8 @@ class Category(AbstractCategoryOrder):
     @products.setter
     def products(self, product):
         '''полученный товар добовляем в список перед этим проверяем чтобы небыло повторений'''
-        if isinstance(product, Product) and product not in self.__products:  # проверяем что приходит точно из класса продукт
+        if isinstance(product,
+                      Product) and product not in self.__products:  # проверяем что приходит точно из класса продукт
             self.__products.append(product)
             Category.unique_products += 1
 
@@ -48,3 +53,8 @@ class Category(AbstractCategoryOrder):
                 Смартфоны, количество продуктов: 3
         '''
         return f'{self.name}, количество продуктов: {len(self)}'
+
+if __name__ == '__main__':
+    product = Product("55\" QLED 4K", "Фоновая подсветка", 10000.0, 1, 'grin')
+    category = Category('name', 'description', [product])
+
