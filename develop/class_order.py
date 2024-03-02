@@ -5,7 +5,6 @@ from develop.class_mixin import ObjectCreationMixin
 
 class Order(AbstractCategoryOrder, ObjectCreationMixin):
     '''
-    Дополнительное задание
     Заказ на оплату продукта
     '''
     suppress_creation_info = False
@@ -19,7 +18,7 @@ class Order(AbstractCategoryOrder, ObjectCreationMixin):
         self.quantity = quantity
         self.calculate_total_cost()
         if not self.suppress_creation_info:
-            print((repr(self)))
+            ObjectCreationMixin.__init__(self)
 
     def calculate_total_cost(self):
         '''

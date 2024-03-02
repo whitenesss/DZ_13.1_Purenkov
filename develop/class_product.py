@@ -13,7 +13,7 @@ class Product(AbstractProduct, ObjectCreationMixin):
         self.quantity = quantity
         self.color = color
         if not self.suppress_creation_info:
-            print((repr(self)))
+            ObjectCreationMixin.__init__(self)
 
     @property
     def request_price(self):

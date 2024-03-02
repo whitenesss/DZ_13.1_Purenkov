@@ -1,7 +1,8 @@
 from develop.class_product import Product
+from develop.class_mixin import ObjectCreationMixin
 
 
-class Smartphone(Product):
+class Smartphone(Product, ObjectCreationMixin):
     suppress_creation_info = True
 
     def __init__(self, name, description, price, quantity, color, performance, model, memory):
@@ -9,7 +10,7 @@ class Smartphone(Product):
         self.performance = performance
         self.model = model
         self.memory = memory
-        print(repr(self))
+        ObjectCreationMixin.__init__(self)
 
     def __add__(self, other):
         if type(other) == Smartphone:
