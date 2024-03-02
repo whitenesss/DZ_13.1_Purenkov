@@ -10,8 +10,9 @@ class AbstractProduct(ABC):
     def __str__(self):
         pass
 
+    @classmethod
     @abstractmethod
-    def new_product(self):
+    def new_product(cls, product_data: dict):
         pass
 
 
