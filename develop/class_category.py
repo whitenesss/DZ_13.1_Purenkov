@@ -14,7 +14,9 @@ class Category(AbstractCategoryOrder, ObjectCreationMixin):
     def __init__(self, name, description, products):
         self.name = name
         self.description = description
-        self.__products = products
+        if products.quantity <= 0:
+            raise ValueError
+        self.__products = [products]
         Category.category_count += 1
         if products not in self.__products:
             Category.unique_products += 1
@@ -35,8 +37,28 @@ class Category(AbstractCategoryOrder, ObjectCreationMixin):
         '''полученный товар добовляем в список перед этим проверяем чтобы небыло повторений'''
         if isinstance(product,
                       Product) and product not in self.__products:  # проверяем что приходит точно из класса продукт
-            self.__products.append(product)
-            Category.unique_products += 1
+            if product.quantity <= 0:
+                raise ValueError(
+                    'вы пытаетесь добавить количество товара равное нулю')  # если количество товара пришло 0 то программа прерывается
+            else:
+                self.__products.append(product)
+                Category.unique_products += 1
+
+    def average_price(self):
+        '''
+        метод получения среднего ценника с условием чели товара не будет то
+        возврощяем пользлвателю 'товар не добавлен'
+        прогрпмма не прирывается
+        '''
+        try:
+            aver = 0
+            for product in self.__products:
+                aver += product.request_price
+            rezult = aver / len(self.__products)
+        except ZeroDivisionError:
+            print('товар не добавлен')
+        else:
+            return round(rezult, 2)
 
     def calculate_total_cost(self):
         pass
@@ -54,7 +76,16 @@ class Category(AbstractCategoryOrder, ObjectCreationMixin):
         '''
         return f'{self.name}, количество продуктов: {len(self)}'
 
-if __name__ == '__main__':
-    product = Product("55\" QLED 4K", "Фоновая подсветка", 10000.0, 1, 'grin')
-    category = Category('name', 'description', [product])
 
+if __name__ == '__main__':
+    product = Product("55\" QLED 4K", "Фоновая подсветка", 100230.0, 2, 'grin')
+    category = Category('name', 'description', product)
+    qwe = product.new_product(
+        {'name': 'privet', 'description': 'andrey', 'price': 14000.0, 'quantity': 1, 'color': 'grin'})
+    qwerr = product.new_product(
+        {'name': 'privet', 'description': 'andrey', 'price': 30000.0, 'quantity': 5, 'color': 'grin'})
+    category.products = qwe
+    category.products = qwerr
+    category.products
+    print(category.average_price())
+    print(category.get_product())
