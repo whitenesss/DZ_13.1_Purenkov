@@ -10,10 +10,13 @@ class Product(AbstractProduct, ObjectCreationMixin):
         self.name = name
         self.description = description
         self.__price = price
+        if quantity <0:
+            raise ValueError
         self.quantity = quantity
         self.color = color
         if not self.suppress_creation_info:
             ObjectCreationMixin.__init__(self)
+
 
     @property
     def request_price(self):
