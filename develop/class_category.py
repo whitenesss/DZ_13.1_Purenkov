@@ -54,11 +54,14 @@ class Category(AbstractCategoryOrder, ObjectCreationMixin):
             aver = 0
             for product in self.__products:
                 aver += product.request_price
-            rezult = aver / len(self.__products)
+            rezult = aver / 0
         except ZeroDivisionError:
-            print('товар не добавлен')
+            return 'товар не добавлен, количество равно 0'
         else:
-            return round(rezult, 2)
+            if rezult == 0.0:
+                return 'цена равна товара ровна нулю , нужно исправить'
+            else:
+                return round(rezult, 2)
 
     def calculate_total_cost(self):
         pass
@@ -78,12 +81,12 @@ class Category(AbstractCategoryOrder, ObjectCreationMixin):
 
 
 if __name__ == '__main__':
-    product = Product("55\" QLED 4K", "Фоновая подсветка", 100230.0, 2, 'grin')
+    product = Product("55\" QLED 4K", "Фоновая подсветка", 100230.0, 1, 'grin')
     category = Category('name', 'description', product)
     qwe = product.new_product(
         {'name': 'privet', 'description': 'andrey', 'price': 14000.0, 'quantity': 1, 'color': 'grin'})
     qwerr = product.new_product(
-        {'name': 'privet', 'description': 'andrey', 'price': 30000.0, 'quantity': 5, 'color': 'grin'})
+        {'name': 'privet', 'description': 'andrey', 'price': 30000.0, 'quantity': 1, 'color': 'grin'})
     category.products = qwe
     category.products = qwerr
     category.products
