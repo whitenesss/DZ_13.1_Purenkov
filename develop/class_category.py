@@ -54,14 +54,11 @@ class Category(AbstractCategoryOrder, ObjectCreationMixin):
             aver = 0
             for product in self.__products:
                 aver += product.request_price
-            rezult = aver / 0
+            rezult = aver / len(self.__products)
         except ZeroDivisionError:
-            return 'товар не добавлен, количество равно 0'
+            return 0
         else:
-            if rezult == 0.0:
-                return 'цена равна товара ровна нулю , нужно исправить'
-            else:
-                return round(rezult, 2)
+            return round(rezult, 2)
 
     def calculate_total_cost(self):
         pass
